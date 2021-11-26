@@ -1,12 +1,13 @@
-# Maintainer: James Lambert (jamlam) <jamesl@mbert.onmicrosoft.com>
+# Maintainer:  kernel.old <kernel.old@gmail.com>
+# Contributor: James Lambert (jamlam) <jamesl@mbert.onmicrosoft.com>
 # Contributor: Aun-Ali Zaidi <admin@kodeit.net>
 # Contributor: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 
-pkgbase=mbp-16.1-linux-wifi
-pkgver=5.15
+pkgbase=linux-mbp15
+pkgver=5.15.5
 _srcname=linux-${pkgver}
 pkgrel=1
-pkgdesc='Linux for MBP 16.1 Wifi'
+pkgdesc='Linux for MBP 15.2 Wifi'
 _srctag=v${pkgver%.*}-${pkgver##*.}
 url="https://git.archlinux.org/linux.git/log/?h=v$_srctag"
 arch=(x86_64)
@@ -240,7 +241,7 @@ for _p in "${pkgname[@]}"; do
   }"
 done
 
-sha256sums=('57b2cf6991910e3b67a1b3490022e8a0674b6965c74c12da1e99d138d1991ee8'
+sha256sums=('e9565a301525ac81c142ceb832f9053dd5685e107dbcf753d0de4c58bc98851f'
             'SKIP'
             '1ddd4443470ad66aff8075e0528ad7757de41d474152db1362e23be72e243919'
             '6b4da532421cac5600d09c0c52742aa52d848af098f7853abe60c02e9d0a3752'

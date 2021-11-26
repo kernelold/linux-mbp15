@@ -1,0 +1,41 @@
+name: makepkg
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  pkgbuild:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: make package with docker arch image
+      id: makepkg
+      run: |
+        docker build . -t builder:latest
+        docker run -v /home/runner/work/linux-mbp15/linux-mbp15:/build:Z builder:latest makepkg -s
+    - name: list packages
+      id: pkglist
+      run: |
+        PACKAGES=$(for i in $(docker run -v /home/runner/work/linux-mbp15/linux-mbp15:/build:Z builder:latest makepkg --packagelist) ; do basename $i ; done )
+        echo "PACKAGES<<EOF" >> $GITHUB_ENV
+        echo "$PACKAGES" >> $GITHUB_ENV
+        echo "EOF" >> $GITHUB_ENV
+    - name: Print Package Files
+      run: |
+        echo "Successfully created the following package archive"
+        echo "Package: ${{ env.PACKAGES }}"
+    - name: Upload Release Asset with dratf release
+      id: upload-release-asset 
+      run: |
+        assets=()
+        for asset in /home/runner/work/linux-mbp15/linux-mbp15/*.pkg.tar.zst  ; do
+          assets+=("-a" "$asset")
+        done
+        tag_name="${GITHUB_REF##*/}"
+        hub release create "${assets[@]}" -d -m "$tag_name" "$tag_name"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
