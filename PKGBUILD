@@ -1,4 +1,5 @@
-# Maintainer: James Lambert (jamlam) <jamesl@mbert.onmicrosoft.com>
+# Maintainer:  kernel.old <kernel.old@gmail.com>
+# Contributor: James Lambert (jamlam) <jamesl@mbert.onmicrosoft.com>
 # Contributor: Aun-Ali Zaidi <admin@kodeit.net>
 # Contributor: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 
@@ -6,7 +7,7 @@ pkgbase=mbp-16.1-linux-wifi
 pkgver=5.15.11
 _srcname=linux-${pkgver}
 pkgrel=1
-pkgdesc='Linux for MBP 16.1 Wifi'
+pkgdesc='Linux for MBP 15.2 Wifi'
 _srctag=v${pkgver%.*}-${pkgver##*.}
 url="https://git.archlinux.org/linux.git/log/?h=v$_srctag"
 arch=(x86_64)
