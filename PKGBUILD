@@ -19,6 +19,10 @@ makedepends=(
 )
 options=('!strip')
 
+major_version=${pkgver%.*.*}
+kernbase="v${major_version}.x"
+kernsha=$(curl -s "https://cdn.kernel.org/pub/linux/kernel/${kernbase}/sha256sums.asc" | grep "linux-${pkgver}.tar.xz" | cut  -d' ' -f1)
+
 source=(
   https://www.kernel.org/pub/linux/kernel/v${pkgver//.*}.x/linux-${pkgver}.tar.xz
   https://www.kernel.org/pub/linux/kernel/v${pkgver//.*}.x/linux-${pkgver}.tar.sign
