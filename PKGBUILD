@@ -4,7 +4,7 @@
 # Contributor: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 
 pkgbase=linux-mbp15
-pkgver=5.15.5
+pkgver=5.15.6
 _srcname=linux-${pkgver}
 pkgrel=1
 pkgdesc='Linux for MBP 15.2 Wifi'
@@ -18,6 +18,10 @@ makedepends=(
   git
 )
 options=('!strip')
+
+major_version=${pkgver%.*.*}
+kernbase="v${major_version}.x"
+kernsha=$(curl -s "https://cdn.kernel.org/pub/linux/kernel/${kernbase}/sha256sums.asc" | grep "linux-${pkgver}.tar.xz" | cut  -d' ' -f1)
 
 source=(
   https://www.kernel.org/pub/linux/kernel/v${pkgver//.*}.x/linux-${pkgver}.tar.xz
@@ -241,7 +245,7 @@ for _p in "${pkgname[@]}"; do
   }"
 done
 
-sha256sums=('e9565a301525ac81c142ceb832f9053dd5685e107dbcf753d0de4c58bc98851f'
+sha256sums=("$kernsha"
             'SKIP'
             '1ddd4443470ad66aff8075e0528ad7757de41d474152db1362e23be72e243919'
             '6b4da532421cac5600d09c0c52742aa52d848af098f7853abe60c02e9d0a3752'
