@@ -4,7 +4,7 @@
 # Contributor: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 
 pkgbase=linux-mbp15
-pkgver=5.15.8
+pkgver=5.15.10
 _srcname=linux-${pkgver}
 pkgrel=1
 pkgdesc='Linux for MBP 15.2 Wifi'
