@@ -4,7 +4,10 @@
 # Contributor: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 
 pkgbase=linux-mbp15
-pkgver=5.15.13
+# get latest stable kernel version to build
+kernstable=$(curl -s https://www.kernel.org/ | grep -A1 'stable:' | grep -oP '(?<=strong>).*(?=</strong.*)')
+# pkgver=5.15.14
+pkgver=$kernstable
 _srcname=linux-${pkgver}
 pkgrel=1
 pkgdesc='Linux for MBP 15.2 Wifi'
