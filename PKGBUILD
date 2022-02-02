@@ -181,7 +181,7 @@ _package-headers() {
   # add objtool for external module building and enabled VALIDATION_STACK option
   install -Dt "$builddir/tools/objtool" tools/objtool/objtool
   # install resolve_btfids 
-  install -Dt "$builddir/tools/bpf" tools/bpf
+  install -Dt "$builddir/tools/bpf/resolve_btfids" "tools/bpf/resolve_btfids/resolve_btfids"
 
   # add xfs and shmem for aufs building
   mkdir -p "$builddir"/{fs/xfs,mm}
@@ -309,7 +309,7 @@ sha256sums=("$kernsha"
             'e6b64db9f07d36ae482d880caef567d369719cb9205c09fb0c21ed780ec36d87'
             'bea0a94969b488e03679034ed072f3d26f208a03096e7a4609f01b94c7a50b3b'
             'fc899329773452ac7d17c8c6efa4ade8b522dfdfb0316e203bf2e21bfd49420a'
-            '04001dfadc6a59fa25b5589da442978617b22d96d1778916c822b45948d3579b'
+            '04001dfadc6a59fa25b5589da442978617b22d96d1778916c822b45948d3579b' # 8015-brcmfmac-acpi-Add-support-for-fetching-Apple-ACPI-pr.patch
             '916cc9c24dfb2c8bbd7f4b5dc3c6e65bcab1d581da9716ce77e21a9889057cff'
             'fbdf79a09a26f7f59cac01b24c721d9246ae58e4366b0e31054fbbf17eb3b618'
             'cc99dd569506748969934855d7fa14ea82b0903c09550b80ceeede91e03b7224'
