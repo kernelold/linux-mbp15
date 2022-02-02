@@ -94,7 +94,6 @@ source=(
   8028-brcmfmac-pcie-Read-the-console-on-init-and-shutdown.patch
   8029-brcmfmac-pcie-Release-firmwares-in-the-brcmf_pcie_se.patch
 
-  efi.patch
 )
 
 validpgpkeys=(
@@ -181,6 +180,8 @@ _package-headers() {
 
   # add objtool for external module building and enabled VALIDATION_STACK option
   install -Dt "$builddir/tools/objtool" tools/objtool/objtool
+  # install resolve_btfids 
+  install -Dt "$builddir/tools/bpf" tools/bpf
 
   # add xfs and shmem for aufs building
   mkdir -p "$builddir"/{fs/xfs,mm}
@@ -322,5 +323,4 @@ sha256sums=("$kernsha"
             'fc485aff4d0ff28ac8fa9700244ac41c3834c11f5c5d7485cf0ef4d404a65823'
             'f11c4db01c578202b9bdd79e9cd8d3207c10bbabc619a2af0734cc455805ec88'
             '713ce3cbda4c53f319bcfeab7e63e8ecf7938109de024f2d99b443fe664ecbd8'
-            'd0dd1ae3b08d9eb39bc094d86022c68f74bf903aac1d202e16853e1f0a5ade93'
-            '31c3260d35d6c51bff231179e6210876142d4c333d6f4a5963fd8b49f4dc61ab')
+            'd0dd1ae3b08d9eb39bc094d86022c68f74bf903aac1d202e16853e1f0a5ade93')
