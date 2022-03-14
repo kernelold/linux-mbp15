@@ -297,7 +297,7 @@ sha256sums=(
 '89076d6a3cb77704025dae8bd33522afcbf8bc6d7fcdf9463f98be06c86797ea' #	6001-media-uvcvideo-Add-support-for-Apple-T2-attached-iSi.patch
 '90a6012cdd8a64ede8e0bbaf7331960bd68f628e0973b65459188eb1ccb5b829' #	7001-drm-i915-fbdev-Discard-BIOS-framebuffers-exceeding-h.patch
 '1ce089059058b1e514f1768f97178c6f4426f920b6737a73ef2eec4c8f14aada' #	8001-brcmfmac-pcie-Declare-missing-firmware-files-in-pcie.patch
-'de8ddf27596e57697bb6f259758efc44f03b0737d27ae9273762727fa043ba79' #	8002-brcmfmac-firmware-Support-having-multiple-alt-paths.patch
+'4491640dcb50f4684e18c7c520b044ea062f4b50cf63ac5e5eae906dc7f4f4da' #	8002-brcmfmac-firmware-Support-having-multiple-alt-paths.patch
 '86dfb440034127bf37b4f2de2749bd65c0a870f6578e08a962cc177421881ff6' #	8003-brcmfmac-firmware-Handle-per-board-clm_blob-files.patch
 '5d6b671a9d41d73702e93bd7d69506a5fa364a39f8e376775b59e10a4a02f137' #	8004-brcmfmac-pcie-sdio-usb-Get-CLM-blob-via-standard-fir.patch
 '07831d408eaed40931eff321b6cd02ce5fcbe508578db2921aa572e8b6a9d912' #	8005-brcmfmac-firmware-Support-passing-in-multiple-board_.patch
