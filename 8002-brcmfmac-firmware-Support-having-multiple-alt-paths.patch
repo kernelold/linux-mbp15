@@ -135,32 +135,25 @@ index 0eb13e5df..dff974955 100644
 +	if (ret < 0)
  		brcmf_fw_request_done(fw, ctx);
  }
- 
-@@ -693,7 +730,6 @@ int brcmf_fw_get_firmwares(struct device *dev, struct brcmf_fw_request *req,
- {
- 	struct brcmf_fw_item *first = &req->items[0];
- 	struct brcmf_fw *fwctx;
--	char *alt_path;
- 	int ret;
- 
- 	brcmf_dbg(TRACE, "enter: dev=%s\n", dev_name(dev));
-@@ -712,12 +748,12 @@ int brcmf_fw_get_firmwares(struct device *dev, struct brcmf_fw_request *req,
+
+@@ -712,14 +749,12 @@ int brcmf_fw_get_firmwares(struct device *dev, struct brcmf_fw_request *req,
  	fwctx->done = fw_cb;
- 
+
  	/* First try alternative board-specific path if any */
--	alt_path = brcm_alt_fw_path(first->path, fwctx->req->board_type);
+-	if (fwctx->req->board_type)
+-		alt_path = brcm_alt_fw_path(first->path,
+-					    fwctx->req->board_type);
 -	if (alt_path) {
 -		ret = request_firmware_nowait(THIS_MODULE, true, alt_path,
-+	fwctx->alt_paths = brcm_alt_fw_paths(first->path, fwctx);
+-					      fwctx->dev, GFP_KERNEL, fwctx,
+-					      brcmf_fw_request_done_alt_path);
+-		kfree(alt_path);
++   	fwctx->alt_paths = brcm_alt_fw_paths(first->path, fwctx);
 +	if (fwctx->alt_paths) {
 +		fwctx->alt_index = 0;
 +		ret = request_firmware_nowait(THIS_MODULE, true, fwctx->alt_paths[0],
- 					      fwctx->dev, GFP_KERNEL, fwctx,
- 					      brcmf_fw_request_done_alt_path);
--		kfree(alt_path);
++                 					      fwctx->dev, GFP_KERNEL, fwctx,
++ 					                      brcmf_fw_request_done_alt_path);
  	} else {
  		ret = request_firmware_nowait(THIS_MODULE, true, first->path,
  					      fwctx->dev, GFP_KERNEL, fwctx,
--- 
-2.25.1
-
