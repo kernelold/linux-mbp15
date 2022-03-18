@@ -275,7 +275,7 @@ done
 sha256sums=(
 "$kernsha"                                                         #    Linix kernel
 'SKIP'	                                                           #    Linux kernel sig
-'7cbba374356a189faac71001c5344ce8f02434684b1ce1accefc0cc4bd6718e5' #	config         # the main kernel config file
+'b2567db7c2cbb106aad0f7ece58579b41a9b9aabbd9beda79a55e9367529f6b8' #	config         # the main kernel config file
 '6b4da532421cac5600d09c0c52742aa52d848af098f7853abe60c02e9d0a3752' #	0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch
 '2184069ab00ef43d9674756e9b7a56d15188bc4494d34425f04ddc779c52acd8' #	0002-HID-quirks-Add-Apple-Magic-Trackpad-2-to-hid_have_sp.patch
 '786dfc22e4c6ece883e7dedd0ba3f6c14018584df95450b2cb78f3da8b01f7cb' #	2001-drm-amd-display-Force-link_rate-as-LINK_RATE_RBR2-fo.patch
