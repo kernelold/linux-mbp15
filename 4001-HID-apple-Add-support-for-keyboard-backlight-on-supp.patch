@@ -27,18 +27,19 @@ index 6b8f0d004d34..e03a621bc741 100644
   */
  
  /*
-@@ -30,6 +31,7 @@
- #define APPLE_INVERT_HWHEEL	0x0040
- /* 0x0080 reserved, was: APPLE_IGNORE_HIDINPUT */
- #define APPLE_NUMLOCK_EMULATION	0x0100
-+#define APPLE_BACKLIGHT_CTL	0x0200
- 
+@@ -32,6 +32,7 @@
+ #define APPLE_INVERT_HWHEEL	BIT(6)
+ /* BIT(7) reserved, was: APPLE_IGNORE_HIDINPUT */
+ #define APPLE_NUMLOCK_EMULATION	BIT(8)
++#define APPLE_BACKLIGHT_CTL 0x0200
+ #define APPLE_RDESC_BATTERY	BIT(9)
+
  #define APPLE_FLAG_FKEY		0x01
- 
-@@ -57,11 +59,18 @@ MODULE_PARM_DESC(swap_fn_leftctrl, "Swap the Fn and left Control keys. "
+
+@@ -61,6 +63,12 @@ MODULE_PARM_DESC(swap_fn_leftctrl, "Swap the Fn and left Control keys. "
  		"(For people who want to keep PC keyboard muscle memory. "
  		"[0] = as-is, Mac layout, 1 = swapped, PC layout)");
- 
+
 +struct apple_sc_backlight {
 +	struct led_classdev cdev;
 +	struct hid_device *hdev;
@@ -46,13 +47,15 @@ index 6b8f0d004d34..e03a621bc741 100644
 +};
 +
  struct apple_sc {
+ 	struct hid_device *hdev;
  	unsigned long quirks;
- 	unsigned int fn_on;
+@@ -68,6 +76,7 @@ unsigned int fn_on;
  	unsigned int fn_found;
  	DECLARE_BITMAP(pressed_numlock, KEY_CNT);
+ 	struct timer_list battery_timer;
 +	struct apple_sc_backlight *backlight;
  };
- 
+
  struct apple_key_translation {
 @@ -70,6 +79,19 @@ struct apple_key_translation {
  	u8 flags;
@@ -192,4 +195,3 @@ index 6b8f0d004d34..e03a621bc741 100644
  
 -- 
 2.30.1
-
