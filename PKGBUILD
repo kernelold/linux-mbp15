@@ -5,8 +5,9 @@
 
 pkgbase=linux-mbp15
 # get latest stable kernel version to build
-kernstable=$(curl -s https://www.kernel.org/ | grep -A1 'stable:' | grep -oP '(?<=strong>).*(?=</strong.*)')
-# pkgver=5.15.14
+mainversion=5.17
+kernstable=$(curl -s https://www.kernel.org/ | grep -A1 'stable:' | grep  "$mainversion" | grep -oP '(?<=strong>).*(?=</strong.*)')
+#pkgver=5.17.1
 pkgver=$kernstable
 _srcname=linux-${pkgver}
 pkgrel=1
@@ -285,7 +286,7 @@ sha256sums=(
 '62f6d63815d4843ca893ca76b84a9d32590a50358ca0962017ccd75a40884ba8' #	3004-applesmc-key-interface-wrappers.patch
 '2827dab6eeb2d2a08034938024f902846b5813e967a0ea253dc1ea88315da383' #	3005-applesmc-basic-mmio-interface-implementation.patch
 '398dec7d54c6122ae2263cd5a6d52353800a1a60fd85e52427c372ea9974a625' #	3006-applesmc-fan-support-on-T2-Macs.patch
-'1366719f62b2d698693b31916569f1178f3d1b0a66e747b7f40f1389edceff07' #	4001-HID-apple-Add-support-for-keyboard-backlight-on-supp.patch
+'5048d93faf203afab9e40b0ffe68bf7be2c5c2f3f92a3e103cd4cee21d938c88' #	4001-HID-apple-Add-support-for-keyboard-backlight-on-supp.patch
 '83f4be6849ba4d5f9fad647ad2eb78bf6409ee98a40ac62e8a5b80496233d70a' #	4002-HID-apple-Add-support-for-MacbookAir8-1-keyboard-tra.patch
 '44bd3643b2b22fedc59d79511199f30ce6759fa0acdd9a66262a53c5e046da6b' #	4003-HID-apple-Add-support-for-MacBookPro15-2-keyboard-tr.patch
 'eb04a492197783643b3e72b1d0cf0e856290381997bd165a14fbc63ac1489c25' #	4004-HID-apple-Add-support-for-MacBookPro15-1-keyboard-tr.patch
