@@ -65,7 +65,6 @@ source=(
   7001-drm-i915-fbdev-Discard-BIOS-framebuffers-exceeding-h.patch
 
   # Broadcom WIFI/BT device support
-  8001-brcmfmac-pcie-Declare-missing-firmware-files-in-pcie.patch
   8002-brcmfmac-firmware-Support-having-multiple-alt-paths.patch
   8003-brcmfmac-firmware-Handle-per-board-clm_blob-files.patch
   8004-brcmfmac-pcie-sdio-usb-Get-CLM-blob-via-standard-fir.patch
@@ -75,7 +74,6 @@ source=(
   8008-brcmfmac-pcie-Perform-firmware-selection-for-Apple-p.patch
   8009-brcmfmac-firmware-Allow-platform-to-override-macaddr.patch
   8010-brcmfmac-msgbuf-Increase-RX-ring-sizes-to-1024.patch
-  8011-brcmfmac-pcie-Fix-crashes-due-to-early-IRQs.patch
   8012-brcmfmac-pcie-Support-PCIe-core-revisions-64.patch
   8013-brcmfmac-pcie-Add-IDs-properties-for-BCM4378.patch
   8014-ACPI-property-Support-strings-in-Apple-_DSM-props.patch
@@ -91,10 +89,7 @@ source=(
   8024-brcmfmac-cfg80211-Add-support-for-PMKID_V3-operation.patch
   8025-brcmfmac-cfg80211-Pass-the-PMK-in-binary-instead-of-.patch
   8026-brcmfmac-pcie-Add-IDs-properties-for-BCM4387.patch
-  8027-brcmfmac-pcie-Replace-brcmf_pcie_copy_mem_todev-with.patch
   8028-brcmfmac-pcie-Read-the-console-on-init-and-shutdown.patch
-  8029-brcmfmac-pcie-Release-firmwares-in-the-brcmf_pcie_se.patch
-
 )
 
 validpgpkeys=(
@@ -297,7 +292,6 @@ sha256sums=(
 '9dfa9f02d17c5cd9620fa2c1d43ca967b81b6a56d33c2bafae14e0c64e498baa' #	4009-HID-apple-Add-support-for-MacBookPro16-1-keyboard-tr.patch
 '89076d6a3cb77704025dae8bd33522afcbf8bc6d7fcdf9463f98be06c86797ea' #	6001-media-uvcvideo-Add-support-for-Apple-T2-attached-iSi.patch
 '90a6012cdd8a64ede8e0bbaf7331960bd68f628e0973b65459188eb1ccb5b829' #	7001-drm-i915-fbdev-Discard-BIOS-framebuffers-exceeding-h.patch
-'1ce089059058b1e514f1768f97178c6f4426f920b6737a73ef2eec4c8f14aada' #	8001-brcmfmac-pcie-Declare-missing-firmware-files-in-pcie.patch
 '4491640dcb50f4684e18c7c520b044ea062f4b50cf63ac5e5eae906dc7f4f4da' #	8002-brcmfmac-firmware-Support-having-multiple-alt-paths.patch
 '86dfb440034127bf37b4f2de2749bd65c0a870f6578e08a962cc177421881ff6' #	8003-brcmfmac-firmware-Handle-per-board-clm_blob-files.patch
 '5d6b671a9d41d73702e93bd7d69506a5fa364a39f8e376775b59e10a4a02f137' #	8004-brcmfmac-pcie-sdio-usb-Get-CLM-blob-via-standard-fir.patch
@@ -305,14 +299,13 @@ sha256sums=(
 '4cb854894f6dbf8bd33a1d6c1efdf1585975187acec963b1789e8355adca6f1b' #	8006-brcmfmac-pcie-Read-Apple-OTP-information.patch
 '46f1d655d85c8434420622b42d631ed79da53ede52c08e4610933545d8606a2c' #	8007-brcmfmac-of-Fetch-Apple-properties.patch
 'c84a45ea91ad72d4264a96b7aefe42b16841d239b3b20156dd72310bc7483815' #	8008-brcmfmac-pcie-Perform-firmware-selection-for-Apple-p.patch
-'aa4d747f10a7af375473f0bf914c1ca17c76183c495f2eabedeb16083509ccde' #	8009-brcmfmac-firmware-Allow-platform-to-override-macaddr.patch
+'a42962a4fb54e29eb10510acf72467432859b99038784fb7362eee2dbf142354' #    8009-brcmfmac-firmware-Allow-platform-to-override-macaddr.patch
 'bdecb89ed084a6c1a5a4b0386accfb17a9daefa4cf32602e82b12f57d0bd8310' #	8010-brcmfmac-msgbuf-Increase-RX-ring-sizes-to-1024.patch
-'f933c8c4d35845dd987db1168d65d6b3bc545a0b1937a6e67d2c974a8b4e276e' #	8011-brcmfmac-pcie-Fix-crashes-due-to-early-IRQs.patch
 'e6b64db9f07d36ae482d880caef567d369719cb9205c09fb0c21ed780ec36d87' #	8012-brcmfmac-pcie-Support-PCIe-core-revisions-64.patch
 'bea0a94969b488e03679034ed072f3d26f208a03096e7a4609f01b94c7a50b3b' #	8013-brcmfmac-pcie-Add-IDs-properties-for-BCM4378.patch
 'fc899329773452ac7d17c8c6efa4ade8b522dfdfb0316e203bf2e21bfd49420a' #	8014-ACPI-property-Support-strings-in-Apple-_DSM-props.patch
 '04001dfadc6a59fa25b5589da442978617b22d96d1778916c822b45948d3579b' #    8015-brcmfmac-acpi-Add-support-for-fetching-Apple-ACPI-pr.patch	
-'916cc9c24dfb2c8bbd7f4b5dc3c6e65bcab1d581da9716ce77e21a9889057cff' #	8016-brcmfmac-pcie-Provide-a-buffer-of-random-bytes-to-th.patch
+'6f5f8dcde1f114eec35cf05e89ce75cf6a5c07fb061de5c3f7db1f8b50381ce3' #    8016-brcmfmac-pcie-Provide-a-buffer-of-random-bytes-to-th.patch
 'fbdf79a09a26f7f59cac01b24c721d9246ae58e4366b0e31054fbbf17eb3b618' #	8017-brcmfmac-pcie-Add-IDs-properties-for-BCM4355.patch
 'cc99dd569506748969934855d7fa14ea82b0903c09550b80ceeede91e03b7224' #	8018-brcmfmac-pcie-Add-IDs-properties-for-BCM4377.patch
 'cbdccfb7d67e42cb6865763ccc89c99da0932763f8c1660759f69c52b003fb44' #	8019-brcmfmac-pcie-Perform-correct-BCM4364-firmware-selec.patch
@@ -323,7 +316,5 @@ sha256sums=(
 '0c2439ccef7aff7c44995cb692fe5e4f5f2192226b55d3f4a291c97fc51a27cc' #	8024-brcmfmac-cfg80211-Add-support-for-PMKID_V3-operation.patch
 '7a8ada03d2504fe11108bfd691b93acd3f8ac5bfedc843f129037eac380ae3b5' #	8025-brcmfmac-cfg80211-Pass-the-PMK-in-binary-instead-of-.patch
 'fc485aff4d0ff28ac8fa9700244ac41c3834c11f5c5d7485cf0ef4d404a65823' #	8026-brcmfmac-pcie-Add-IDs-properties-for-BCM4387.patch
-'f11c4db01c578202b9bdd79e9cd8d3207c10bbabc619a2af0734cc455805ec88' #	8027-brcmfmac-pcie-Replace-brcmf_pcie_copy_mem_todev-with.patch
 '713ce3cbda4c53f319bcfeab7e63e8ecf7938109de024f2d99b443fe664ecbd8' #	8028-brcmfmac-pcie-Read-the-console-on-init-and-shutdown.patch
-'d0dd1ae3b08d9eb39bc094d86022c68f74bf903aac1d202e16853e1f0a5ade93' #	8029-brcmfmac-pcie-Release-firmwares-in-the-brcmf_pcie_se.patch
 )
