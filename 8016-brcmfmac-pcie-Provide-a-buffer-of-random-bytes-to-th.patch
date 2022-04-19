@@ -21,13 +21,14 @@ diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c b/drivers/n
 index e1bc7e4a9..b71952254 100644
 --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
 +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
-@@ -12,6 +12,7 @@
- #include <linux/interrupt.h>
+@@ -13,6 +13,8 @@
  #include <linux/bcma/bcma.h>
  #include <linux/sched.h>
+ #include <linux/io.h>
 +#include <linux/random.h>
++#include <asm/io.h>
  #include <asm/unaligned.h>
- 
+
  #include <soc.h>
 @@ -1667,6 +1668,13 @@ brcmf_pcie_init_share_ram_info(struct brcmf_pciedev_info *devinfo,
  	return 0;
@@ -43,9 +44,9 @@ index e1bc7e4a9..b71952254 100644
  
  static int brcmf_pcie_download_fw_nvram(struct brcmf_pciedev_info *devinfo,
  					const struct firmware *fw, void *nvram,
-@@ -1698,11 +1706,34 @@ static int brcmf_pcie_download_fw_nvram(struct brcmf_pciedev_info *devinfo,
+@@ -1555,11 +1556,34 @@ static int brcmf_pcie_download_fw_nvram(struct brcmf_pciedev_info *devinfo,
  	brcmf_pcie_write_ram32(devinfo, devinfo->ci->ramsize - 4, 0);
- 
+
  	if (nvram) {
 +		size_t rand_len = BRCMF_RANDOM_SEED_LENGTH;
 +		struct brcmf_random_seed_footer footer = {
@@ -57,7 +58,7 @@ index e1bc7e4a9..b71952254 100644
  		brcmf_dbg(PCIE, "Download NVRAM %s\n", devinfo->nvram_name);
  		address = devinfo->ci->rambase + devinfo->ci->ramsize -
  			  nvram_len;
- 		brcmf_pcie_copy_mem_todev(devinfo, address, nvram, nvram_len);
+ 		memcpy_toio(devinfo->tcm + address, nvram, nvram_len);
  		brcmf_fw_nvram_free(nvram);
 +
 +		/*
@@ -67,17 +68,17 @@ index e1bc7e4a9..b71952254 100644
 +		brcmf_dbg(PCIE, "Download random seed\n");
 +
 +		address -= sizeof(footer);
-+		brcmf_pcie_copy_mem_todev(devinfo, address, &footer,
++		memcpy_toio(devinfo->tcm + address, &footer,
 +					  sizeof(footer));
 +
 +		address -= rand_len;
 +		randbuf = kzalloc(rand_len, GFP_KERNEL);
 +		get_random_bytes(randbuf, rand_len);
-+		brcmf_pcie_copy_mem_todev(devinfo, address, randbuf, rand_len);
++		memcpy_toio(devinfo->tcm + address, randbuf, rand_len);
 +		kfree(randbuf);
  	} else {
  		brcmf_dbg(PCIE, "No matching NVRAM file found %s\n",
  			  devinfo->nvram_name);
+
 -- 
 2.25.1
-

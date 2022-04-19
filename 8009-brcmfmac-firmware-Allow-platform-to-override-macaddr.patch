@@ -54,12 +54,10 @@ index 02e36fa3d..dc4151bcc 100644
  	} else if (!is_nvram_char(c) || c == ' ') {
  		brcmf_dbg(INFO, "warning: ln=%d:col=%d: '=' expected, skip invalid key entry\n",
  			  nvp->line, nvp->column);
-@@ -207,6 +214,9 @@ static int brcmf_init_nvram_parser(struct nvram_parser *nvp,
- 		size = BRCMF_FW_MAX_NVRAM_SIZE;
- 	else
+@@ -209,6 +209,7 @@ static int brcmf_init_nvram_parser(struct nvram_parser *nvp,
  		size = data_len;
-+	/* Add space for properties we may add */
-+	size += strlen(BRCMF_FW_DEFAULT_BOARDREV) + 1;
+ 	/* Add space for properties we may add */
+ 	size += strlen(BRCMF_FW_DEFAULT_BOARDREV) + 1;
 +	size += BRCMF_FW_MACADDR_LEN + 1;
  	/* Alloc for extra 0 byte + roundup by 4 + length field */
  	size += 1 + 3 + sizeof(u32);
@@ -122,4 +120,3 @@ index 02e36fa3d..dc4151bcc 100644
  		bcm47xx_nvram_release_contents(data);
 -- 
 2.25.1
-
