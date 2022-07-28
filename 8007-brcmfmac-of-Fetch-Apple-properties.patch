@@ -46,7 +46,7 @@ index 513c7e642..31407d3a1 100644
  	int err;
  	u32 irqf;
  	u32 val;
- 
+
 +	/*
 +	 * Apple ARM64 platforms have their own idea of board type, passed in
 +	 * via the device tree. They also have an antenna SKU parameter
@@ -67,8 +67,8 @@ index 513c7e642..31407d3a1 100644
  	/* Set board-type to the first string of the machine compatible prop */
  	root = of_find_node_by_path("/");
 -	if (root) {
-+	if (root && !settings->board_type) {
- 		int i, len;
++    if (root && !settings->board_type) {
+ 		int i;
  		char *board_type;
  		const char *tmp;
 -- 

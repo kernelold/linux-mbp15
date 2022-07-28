@@ -5,7 +5,7 @@
 
 pkgbase=linux-mbp15
 # get latest stable kernel version to build
-mainversion=5.17
+mainversion=5.18
 kernstable=$(curl -s https://www.kernel.org/ | grep -A1 'stable:' | grep  "$mainversion" | grep -oP '(?<=strong>).*(?=</strong.*)')
 #pkgver=5.17.1
 pkgver=$kernstable
@@ -48,19 +48,8 @@ source=(
   3006-applesmc-fan-support-on-T2-Macs.patch
 
   # T2 USB Keyboard/Touchpad support
-  4001-HID-apple-Add-support-for-keyboard-backlight-on-supp.patch
-  4002-HID-apple-Add-support-for-MacbookAir8-1-keyboard-tra.patch
   4003-HID-apple-Add-support-for-MacBookPro15-2-keyboard-tr.patch
-  4004-HID-apple-Add-support-for-MacBookPro15-1-keyboard-tr.patch
-  4005-HID-apple-Add-support-for-MacBookPro15-4-keyboard-tr.patch
-  4006-HID-apple-Add-support-for-MacBookPro16-2-keyboard-tr.patch
-  4007-HID-apple-Add-support-for-MacBookPro16-3-keyboard-tr.patch
-  4008-HID-apple-Add-support-for-MacBookAir9-1-keyboard-tra.patch
-  4009-HID-apple-Add-support-for-MacBookPro16-1-keyboard-tr.patch
   
-  # MBP Peripheral support
-  6001-media-uvcvideo-Add-support-for-Apple-T2-attached-iSi.patch	# UVC Camera support
-
   # Hack for i915 overscan issues
   7001-drm-i915-fbdev-Discard-BIOS-framebuffers-exceeding-h.patch
 
@@ -89,7 +78,6 @@ source=(
   8024-brcmfmac-cfg80211-Add-support-for-PMKID_V3-operation.patch
   8025-brcmfmac-cfg80211-Pass-the-PMK-in-binary-instead-of-.patch
   8026-brcmfmac-pcie-Add-IDs-properties-for-BCM4387.patch
-  8028-brcmfmac-pcie-Read-the-console-on-init-and-shutdown.patch
 )
 
 validpgpkeys=(
@@ -281,23 +269,14 @@ sha256sums=(
 '62f6d63815d4843ca893ca76b84a9d32590a50358ca0962017ccd75a40884ba8' #	3004-applesmc-key-interface-wrappers.patch
 '2827dab6eeb2d2a08034938024f902846b5813e967a0ea253dc1ea88315da383' #	3005-applesmc-basic-mmio-interface-implementation.patch
 '398dec7d54c6122ae2263cd5a6d52353800a1a60fd85e52427c372ea9974a625' #	3006-applesmc-fan-support-on-T2-Macs.patch
-'5048d93faf203afab9e40b0ffe68bf7be2c5c2f3f92a3e103cd4cee21d938c88' #	4001-HID-apple-Add-support-for-keyboard-backlight-on-supp.patch
-'83f4be6849ba4d5f9fad647ad2eb78bf6409ee98a40ac62e8a5b80496233d70a' #	4002-HID-apple-Add-support-for-MacbookAir8-1-keyboard-tra.patch
-'44bd3643b2b22fedc59d79511199f30ce6759fa0acdd9a66262a53c5e046da6b' #	4003-HID-apple-Add-support-for-MacBookPro15-2-keyboard-tr.patch
-'eb04a492197783643b3e72b1d0cf0e856290381997bd165a14fbc63ac1489c25' #	4004-HID-apple-Add-support-for-MacBookPro15-1-keyboard-tr.patch
-'69d56d42473526f7dbd4fb18c5e1baafe4e6d32995b2506bd48ff981c53b5385' #	4005-HID-apple-Add-support-for-MacBookPro15-4-keyboard-tr.patch
-'1deeacae1875cf9075b858a8bfb2463ebc531c9030b7c2ab46bbb8e4c3b974db' #	4006-HID-apple-Add-support-for-MacBookPro16-2-keyboard-tr.patch
-'40eff5e88bb30c51c6b97e85c2e7b8dec5f97916f768e6c07618d9c5afe68574' #	4007-HID-apple-Add-support-for-MacBookPro16-3-keyboard-tr.patch
-'cac035fe07663a319185c644c5b39b34bef89ada348881fa4a02d15290260445' #	4008-HID-apple-Add-support-for-MacBookAir9-1-keyboard-tra.patch
-'9dfa9f02d17c5cd9620fa2c1d43ca967b81b6a56d33c2bafae14e0c64e498baa' #	4009-HID-apple-Add-support-for-MacBookPro16-1-keyboard-tr.patch
-'89076d6a3cb77704025dae8bd33522afcbf8bc6d7fcdf9463f98be06c86797ea' #	6001-media-uvcvideo-Add-support-for-Apple-T2-attached-iSi.patch
+'89538d96a3ce3630069b625a1ad43a1dc93c3457c783041cdfdc3417c12e96cb' #	4003-HID-apple-Add-support-for-MacBookPro15-2-keyboard-tr.patch
 '90a6012cdd8a64ede8e0bbaf7331960bd68f628e0973b65459188eb1ccb5b829' #	7001-drm-i915-fbdev-Discard-BIOS-framebuffers-exceeding-h.patch
 '4491640dcb50f4684e18c7c520b044ea062f4b50cf63ac5e5eae906dc7f4f4da' #	8002-brcmfmac-firmware-Support-having-multiple-alt-paths.patch
 '86dfb440034127bf37b4f2de2749bd65c0a870f6578e08a962cc177421881ff6' #	8003-brcmfmac-firmware-Handle-per-board-clm_blob-files.patch
 '5d6b671a9d41d73702e93bd7d69506a5fa364a39f8e376775b59e10a4a02f137' #	8004-brcmfmac-pcie-sdio-usb-Get-CLM-blob-via-standard-fir.patch
 '07831d408eaed40931eff321b6cd02ce5fcbe508578db2921aa572e8b6a9d912' #	8005-brcmfmac-firmware-Support-passing-in-multiple-board_.patch
 '4cb854894f6dbf8bd33a1d6c1efdf1585975187acec963b1789e8355adca6f1b' #	8006-brcmfmac-pcie-Read-Apple-OTP-information.patch
-'46f1d655d85c8434420622b42d631ed79da53ede52c08e4610933545d8606a2c' #	8007-brcmfmac-of-Fetch-Apple-properties.patch
+'d7f1330c7489856c0dbdbb17eaa6248104b6db3df7b6813700ef9e6339157674' #	8007-brcmfmac-of-Fetch-Apple-properties.patch
 'c84a45ea91ad72d4264a96b7aefe42b16841d239b3b20156dd72310bc7483815' #	8008-brcmfmac-pcie-Perform-firmware-selection-for-Apple-p.patch
 'a42962a4fb54e29eb10510acf72467432859b99038784fb7362eee2dbf142354' #    8009-brcmfmac-firmware-Allow-platform-to-override-macaddr.patch
 'bdecb89ed084a6c1a5a4b0386accfb17a9daefa4cf32602e82b12f57d0bd8310' #	8010-brcmfmac-msgbuf-Increase-RX-ring-sizes-to-1024.patch
@@ -316,5 +295,4 @@ sha256sums=(
 '0c2439ccef7aff7c44995cb692fe5e4f5f2192226b55d3f4a291c97fc51a27cc' #	8024-brcmfmac-cfg80211-Add-support-for-PMKID_V3-operation.patch
 '7a8ada03d2504fe11108bfd691b93acd3f8ac5bfedc843f129037eac380ae3b5' #	8025-brcmfmac-cfg80211-Pass-the-PMK-in-binary-instead-of-.patch
 'fc485aff4d0ff28ac8fa9700244ac41c3834c11f5c5d7485cf0ef4d404a65823' #	8026-brcmfmac-pcie-Add-IDs-properties-for-BCM4387.patch
-'713ce3cbda4c53f319bcfeab7e63e8ecf7938109de024f2d99b443fe664ecbd8' #	8028-brcmfmac-pcie-Read-the-console-on-init-and-shutdown.patch
 )
