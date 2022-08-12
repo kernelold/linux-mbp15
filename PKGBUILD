@@ -5,10 +5,10 @@
 
 pkgbase=linux-mbp15
 # get latest stable kernel version to build
-mainversion=5.18
+mainversion=5.19
 kernstable=$(curl -s https://www.kernel.org/ | grep -A1 'stable:' | grep  "$mainversion" | grep -oP '(?<=strong>).*(?=</strong.*)')
-#pkgver=5.17.1
 pkgver=$kernstable
+#pkgver=5.19
 _srcname=linux-${pkgver}
 pkgrel=1
 pkgdesc='Linux for MBP 15.2 Wifi'
@@ -117,7 +117,6 @@ prepare() {
 build() {
   cd $_srcname
   make all
-  make htmldocs
 }
 
 _package() {
@@ -197,9 +196,6 @@ _package-headers() {
     rm -r "$arch"
   done
 
-  echo "Removing documentation..."
-  rm -r "$builddir/Documentation"
-
   echo "Removing broken symlinks..."
   find -L "$builddir" -type l -printf 'Removing %P\n' -delete
 
@@ -229,26 +225,7 @@ _package-headers() {
   ln -sr "$builddir" "$pkgdir/usr/src/$pkgbase"
 }
 
-_package-docs() {
-  pkgdesc="Documentation for the $pkgdesc kernel"
-
-  cd $_srcname
-  local builddir="$pkgdir/usr/lib/modules/$(<version)/build"
-
-  echo "Installing documentation..."
-  local src dst
-  while read -rd '' src; do
-    dst="${src#Documentation/}"
-    dst="$builddir/Documentation/${dst#output/}"
-    install -Dm644 "$src" "$dst"
-  done < <(find Documentation -name '.*' -prune -o ! -type d -print0)
-
-  echo "Adding symlink..."
-  mkdir -p "$pkgdir/usr/share/doc"
-  ln -sr "$builddir/Documentation" "$pkgdir/usr/share/doc/$pkgbase"
-}
-
-pkgname=("$pkgbase" "$pkgbase-headers" "$pkgbase-docs")
+pkgname=("$pkgbase" "$pkgbase-headers")
 for _p in "${pkgname[@]}"; do
   eval "package_$_p() {
     $(declare -f "_package${_p#$pkgbase}")
@@ -276,7 +253,7 @@ sha256sums=(
 '5d6b671a9d41d73702e93bd7d69506a5fa364a39f8e376775b59e10a4a02f137' #	8004-brcmfmac-pcie-sdio-usb-Get-CLM-blob-via-standard-fir.patch
 '07831d408eaed40931eff321b6cd02ce5fcbe508578db2921aa572e8b6a9d912' #	8005-brcmfmac-firmware-Support-passing-in-multiple-board_.patch
 '4cb854894f6dbf8bd33a1d6c1efdf1585975187acec963b1789e8355adca6f1b' #	8006-brcmfmac-pcie-Read-Apple-OTP-information.patch
-'d7f1330c7489856c0dbdbb17eaa6248104b6db3df7b6813700ef9e6339157674' #	8007-brcmfmac-of-Fetch-Apple-properties.patch
+'21ffd8d8499048580965a7205a5dff0318e9d3b2b784e303b97e8f9346aafacc' #	8007-brcmfmac-of-Fetch-Apple-properties.patch
 'c84a45ea91ad72d4264a96b7aefe42b16841d239b3b20156dd72310bc7483815' #	8008-brcmfmac-pcie-Perform-firmware-selection-for-Apple-p.patch
 'a42962a4fb54e29eb10510acf72467432859b99038784fb7362eee2dbf142354' #    8009-brcmfmac-firmware-Allow-platform-to-override-macaddr.patch
 'bdecb89ed084a6c1a5a4b0386accfb17a9daefa4cf32602e82b12f57d0bd8310' #	8010-brcmfmac-msgbuf-Increase-RX-ring-sizes-to-1024.patch
