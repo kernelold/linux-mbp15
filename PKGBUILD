@@ -3,12 +3,12 @@
 # Contributor: Aun-Ali Zaidi <admin@kodeit.net>
 # Contributor: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 
+#pkgver=6.0.2
 pkgbase=linux-mbp15
 # get latest stable kernel version to build
-mainversion=5.19
+mainversion=6.0
 kernstable=$(curl -s https://www.kernel.org/ | grep -A1 'stable:' | grep  "$mainversion" | grep -oP '(?<=strong>).*(?=</strong.*)')
 pkgver=$kernstable
-#pkgver=5.19
 _srcname=linux-${pkgver}
 pkgrel=1
 pkgdesc='Linux for MBP 15.2 Wifi'
@@ -253,7 +253,7 @@ sha256sums=(
 '5d6b671a9d41d73702e93bd7d69506a5fa364a39f8e376775b59e10a4a02f137' #	8004-brcmfmac-pcie-sdio-usb-Get-CLM-blob-via-standard-fir.patch
 '07831d408eaed40931eff321b6cd02ce5fcbe508578db2921aa572e8b6a9d912' #	8005-brcmfmac-firmware-Support-passing-in-multiple-board_.patch
 '4cb854894f6dbf8bd33a1d6c1efdf1585975187acec963b1789e8355adca6f1b' #	8006-brcmfmac-pcie-Read-Apple-OTP-information.patch
-'21ffd8d8499048580965a7205a5dff0318e9d3b2b784e303b97e8f9346aafacc' #	8007-brcmfmac-of-Fetch-Apple-properties.patch
+'ee7babec430498fbb6c08374f38bf91c6602e5c057a8b007ac597b1fb44fdab7' #	8007-brcmfmac-of-Fetch-Apple-properties.patch
 'c84a45ea91ad72d4264a96b7aefe42b16841d239b3b20156dd72310bc7483815' #	8008-brcmfmac-pcie-Perform-firmware-selection-for-Apple-p.patch
 'a42962a4fb54e29eb10510acf72467432859b99038784fb7362eee2dbf142354' #    8009-brcmfmac-firmware-Allow-platform-to-override-macaddr.patch
 'bdecb89ed084a6c1a5a4b0386accfb17a9daefa4cf32602e82b12f57d0bd8310' #	8010-brcmfmac-msgbuf-Increase-RX-ring-sizes-to-1024.patch

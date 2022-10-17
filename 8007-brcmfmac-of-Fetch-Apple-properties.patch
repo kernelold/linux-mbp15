@@ -37,7 +37,7 @@ diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c b/drivers/net
 index 513c7e642..31407d3a1 100644
 --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
 +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
-@@ -63,14 +63,32 @@ void brcmf_of_probe(struct device *dev, enum brcmf_bus_type bus_type,
+@@ -70,14 +70,32 @@ void brcmf_of_probe(struct device *dev, enum brcmf_bus_type bus_type,
  {
  	struct brcmfmac_sdio_pd *sdio = &settings->bus.sdio;
  	struct device_node *root, *np = dev->of_node;
@@ -68,8 +68,8 @@ index 513c7e642..31407d3a1 100644
  	root = of_find_node_by_path("/");
 -	if (root) {
 +    if (root && !settings->board_type) {
- 		int i;
  		char *board_type;
  		const char *tmp;
+
 -- 
 2.25.1
