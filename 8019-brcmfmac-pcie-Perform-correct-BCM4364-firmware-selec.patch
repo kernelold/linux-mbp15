@@ -61,7 +61,7 @@ index 5b4a4cb33..b6b789b49 100644
  	BRCMF_FW_ENTRY(BRCM_CC_4365_CHIP_ID, 0x0000000F, 4365B),
  	BRCMF_FW_ENTRY(BRCM_CC_4365_CHIP_ID, 0xFFFFFFF0, 4365C),
  	BRCMF_FW_ENTRY(BRCM_CC_4366_CHIP_ID, 0x0000000F, 4366B),
-@@ -2057,6 +2059,11 @@ static int brcmf_pcie_read_otp(struct brcmf_pciedev_info *devinfo)
+@@ -2015,6 +2015,11 @@ static int brcmf_pcie_read_otp(struct brcmf_pciedev_info *devinfo)
  		base = 0x8c0;
  		words = 0xb2;
  		break;
@@ -70,9 +70,9 @@ index 5b4a4cb33..b6b789b49 100644
 +		base = 0x8c0;
 +		words = 0x1a0;
 +		break;
- 	case BRCM_CC_4377_CHIP_ID:
  	case BRCM_CC_4378_CHIP_ID:
  		coreid = BCMA_CORE_GCI;
+ 		base = 0x1120;
+
 -- 
 2.25.1
-
