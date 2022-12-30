@@ -21,12 +21,10 @@ jobs:
     - name: list packages
       id: pkglist
       run: |
-        PACKAGES=$(for i in $(docker run -v /home/runner/work/linux-mbp15/linux-mbp15:/build:Z builder:latest makepkg --packagelist) ; do basename $i ; done )
-        KERNVERSION="$(echo "$PACKAGES" | head -1 | awk -F- '{print $3}')"
-        echo "PACKAGES<<EOF" >> $GITHUB_ENV
-        echo "$PACKAGES" >> $GITHUB_ENV
-        echo "EOF" >> $GITHUB_ENV
-        echo "kernel_compiled=$KERNVERSION" >> $GITHUB_OUTPUT
+        PACKAGES=$(for i in $(docker run -v /home/runner/work/linux-mbp15/linux-mbp15:/build:Z builder:latest makepkg --packagelist) ; do basename $i ; done ) ; \
+        KERNVERSION="$(echo "$PACKAGES" | head -1 | awk -F- '{print $3}')" ; \
+        echo "PACKAGES=$PACKAGES" >> $GITHUB_ENV ; \
+        echo "kernel_compiled=$KERNVERSION" >> $GITHUB_OUTPUT 
     - name: Print Package Files
       run: |
         echo "Successfully created the following package archive"
