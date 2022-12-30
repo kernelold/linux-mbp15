@@ -32,13 +32,6 @@ source=(
   https://www.kernel.org/pub/linux/kernel/v${pkgver//.*}.x/linux-${pkgver}.tar.sign
   config         # the main kernel config file
 
-  # Arch Linux patches
-  0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch
-  0002-HID-quirks-Add-Apple-Magic-Trackpad-2-to-hid_have_sp.patch
-
-  # Hack for AMD DC eDP link rate bug
-  2001-drm-amd-display-Force-link_rate-as-LINK_RATE_RBR2-fo.patch
-
   # Apple SMC ACPI support
   3001-applesmc-convert-static-structures-to-drvdata.patch
   3002-applesmc-make-io-port-base-addr-dynamic.patch
@@ -57,14 +50,7 @@ source=(
   8014-ACPI-property-Support-strings-in-Apple-_DSM-props.patch
   8015-brcmfmac-acpi-Add-support-for-fetching-Apple-ACPI-pr.patch
   8016-brcmfmac-pcie-Provide-a-buffer-of-random-bytes-to-th.patch
-  8017-brcmfmac-pcie-Add-IDs-properties-for-BCM4355.patch
   8019-brcmfmac-pcie-Perform-correct-BCM4364-firmware-selec.patch
-  8020-brcmfmac-chip-Only-disable-D11-cores-handle-an-arbit.patch
-  8021-brcmfmac-chip-Handle-1024-unit-sizes-for-TCM-blocks.patch
-  8022-brcmfmac-cfg80211-Add-support-for-scan-params-v2.patch
-  8023-brcmfmac-feature-Add-support-for-setting-feats-based.patch
-  8024-brcmfmac-cfg80211-Add-support-for-PMKID_V3-operation.patch
-  8025-brcmfmac-cfg80211-Pass-the-PMK-in-binary-instead-of-.patch
 )
 
 validpgpkeys=(
@@ -224,9 +210,6 @@ sha256sums=(
 "$kernsha"                                                         #    Linix kernel
 'SKIP'	                                                           #    Linux kernel sig
 'b2567db7c2cbb106aad0f7ece58579b41a9b9aabbd9beda79a55e9367529f6b8' #	config         # the main kernel config file
-'6b4da532421cac5600d09c0c52742aa52d848af098f7853abe60c02e9d0a3752' #	0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch
-'2184069ab00ef43d9674756e9b7a56d15188bc4494d34425f04ddc779c52acd8' #	0002-HID-quirks-Add-Apple-Magic-Trackpad-2-to-hid_have_sp.patch
-'786dfc22e4c6ece883e7dedd0ba3f6c14018584df95450b2cb78f3da8b01f7cb' #	2001-drm-amd-display-Force-link_rate-as-LINK_RATE_RBR2-fo.patch
 'cfd23a06797ac86575044428a393dd7f10f06eff7648d0b78aedad82cbe41279' #	3001-applesmc-convert-static-structures-to-drvdata.patch
 '8d8401a99a9dfbc41aa2dc5b6a409a19860b1b918465e19de4a4ff18de075ea3' #	3002-applesmc-make-io-port-base-addr-dynamic.patch
 '08d165106fe35b68a7b48f216566951a5db0baac19098c015bcc81c5fcba678d' #	3003-applesmc-switch-to-acpi_device-from-platform.patch
@@ -238,12 +221,5 @@ sha256sums=(
 'fc899329773452ac7d17c8c6efa4ade8b522dfdfb0316e203bf2e21bfd49420a' #	8014-ACPI-property-Support-strings-in-Apple-_DSM-props.patch
 '04001dfadc6a59fa25b5589da442978617b22d96d1778916c822b45948d3579b' #    8015-brcmfmac-acpi-Add-support-for-fetching-Apple-ACPI-pr.patch	
 '6f5f8dcde1f114eec35cf05e89ce75cf6a5c07fb061de5c3f7db1f8b50381ce3' #    8016-brcmfmac-pcie-Provide-a-buffer-of-random-bytes-to-th.patch
-'8c60be230740678bf0b0b58ab9ea7c7359a1945230b9fbc4c1469991bd1943d9' #    8017-brcmfmac-pcie-Add-IDs-properties-for-BCM4355.patch
-'f05ef911db47bca03e0e876d1e6d7e2788592e715e4987fdd281edb0e6e497d3' #    8019-brcmfmac-pcie-Perform-correct-BCM4364-firmware-selec.patch
-'6e6b1638cc9836021980a096638985d2c3f2f6ed12279b03980e1f9f18659ca4' #	8020-brcmfmac-chip-Only-disable-D11-cores-handle-an-arbit.patch
-'ef64c0c357b59fb437d2dba76faedf67f22ec2ab565ebc5283473a7a6ed1ff95' #	8021-brcmfmac-chip-Handle-1024-unit-sizes-for-TCM-blocks.patch
-'434f466a4e80e08698467feedb121b3ffe46affd09980eb4accc29fdaba66927' #	8022-brcmfmac-cfg80211-Add-support-for-scan-params-v2.patch
-'00ee4cd515a7004e1da382b7c441ab3818ed858f3f55c9b23c07eee04278d7e6' #	8023-brcmfmac-feature-Add-support-for-setting-feats-based.patch
-'0c2439ccef7aff7c44995cb692fe5e4f5f2192226b55d3f4a291c97fc51a27cc' #	8024-brcmfmac-cfg80211-Add-support-for-PMKID_V3-operation.patch
-'7a8ada03d2504fe11108bfd691b93acd3f8ac5bfedc843f129037eac380ae3b5' #	8025-brcmfmac-cfg80211-Pass-the-PMK-in-binary-instead-of-.patch
+'4a44a76b434a6bb5accb891db7632911fc0aa31ebe7250095e885f13db9c1273' #    8019-brcmfmac-pcie-Perform-correct-BCM4364-firmware-selec.patch
 )
