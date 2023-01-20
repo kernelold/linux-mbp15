@@ -209,7 +209,7 @@ done
 sha256sums=(
 "$kernsha"                                                         #    Linix kernel
 'SKIP'	                                                           #    Linux kernel sig
-'b2567db7c2cbb106aad0f7ece58579b41a9b9aabbd9beda79a55e9367529f6b8' #	config         # the main kernel config file
+'644c8f2fdaa25d1536fec9f1b40d4d69f850c9dd45466df2539e53fc118df4e7' #    config
 'cfd23a06797ac86575044428a393dd7f10f06eff7648d0b78aedad82cbe41279' #	3001-applesmc-convert-static-structures-to-drvdata.patch
 '8d8401a99a9dfbc41aa2dc5b6a409a19860b1b918465e19de4a4ff18de075ea3' #	3002-applesmc-make-io-port-base-addr-dynamic.patch
 '08d165106fe35b68a7b48f216566951a5db0baac19098c015bcc81c5fcba678d' #	3003-applesmc-switch-to-acpi_device-from-platform.patch

@@ -43,7 +43,7 @@ jobs:
         for asset in /home/runner/work/linux-mbp15/linux-mbp15/*.pkg.tar.zst  ; do
           assets+=("-a" "$asset")
         done
-        tag_name="${GITHUB_REF##*/}-${{ env.KERN_COMPILED }}-${GITHUB_RUN_NUMBER}"
-        hub release create "${assets[@]}" -d -m "$tag_name" "$tag_name"
+        tag_name="${{ env.KERN_COMPILED }}-${GITHUB_RUN_NUMBER}"
+        hub release create "${assets[@]}" -m "$tag_name" "$tag_name"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
