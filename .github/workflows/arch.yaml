@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
   schedule:
-    - cron: "0 1 * * 1"
+    - cron: "0 1 * * *"
 
 jobs:
   pkgbuild:
@@ -14,13 +14,37 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
+    - name: Fetch tags
+      run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+    - name: chech if such tag already exist 
+      id: tagged
+      run: |
+        mainversion=$(grep 'mainversion=' PKGBUILD  | awk -F= '{print $2}')
+        kernstable=$(curl -s https://www.kernel.org/ | grep -A1 'stable:' | grep  "$mainversion" | grep -oP '(?<=strong>).*(?=</strong.*)')
+        tagtocheck=${kernstable}-1
+        git show-ref --tags --verify --quiet -- "refs/tags/$tagtocheck" && echo "is=true" >> $GITHUB_OUTPUT  || echo "is=false" >> $GITHUB_OUTPUT
+        echo "kernstable=$kernstable" >> $GITHUB_OUTPUT
+        echo "mainversion=$mainversion" >> $GITHUB_OUTPUT
+
+    - name: echo false
+      if: steps.tagged.outputs.is == 'false'
+      run: |
+        echo "Tag not found, building kernel ${{steps.tagged.outputs.kernstable}} mainline ${{steps.tagged.outputs.mainversion}}"
+
+    - name: echo true 
+      if: steps.tagged.outputs.is == 'true'
+      run: |
+        echo "Tag ${{steps.tagged.outputs.kernstable}} for mainline ${{steps.tagged.outputs.mainversion}} already exists, skipping build"
+        
     - name: make package with docker arch image
+      if: steps.tagged.outputs.is == 'false'
       id: makepkg
       run: |
         sed "s/pkgrel=1/pkgrel=${GITHUB_RUN_NUMBER}/" -i PKGBUILD
         docker build . -t builder:latest
         docker run -v /home/runner/work/linux-mbp15/linux-mbp15:/build:Z builder:latest makepkg -s --needed
     - name: list packages
+      if: steps.tagged.outputs.is == 'false'
       id: pkglist
       run: |
         PACKAGES=$(for i in $(docker run -v /home/runner/work/linux-mbp15/linux-mbp15:/build:Z builder:latest makepkg --packagelist) ; do basename $i ; done ) 
@@ -31,19 +55,21 @@ jobs:
         echo "EOF" >> $GITHUB_ENV
         echo "kernel_compiled=$KERNVERSION" >> $GITHUB_OUTPUT
     - name: Print Package Files
+      if: steps.tagged.outputs.is == 'false'
       run: |
         echo "Successfully created the following package archive"
         echo "Packages: ${{ env.PACKAGES }}"
         echo "Kernel compiled: ${{ env.KERN_COMPILED }}"
         echo "Kernel version: ${{ steps.pkglist.outputs.kernel_compiled }}"
     - name: Upload Release Asset with dratf release
+      if: steps.tagged.outputs.is == 'false'
       id: upload-release-asset 
       run: |
         assets=()
         for asset in /home/runner/work/linux-mbp15/linux-mbp15/*.pkg.tar.zst  ; do
           assets+=("-a" "$asset")
         done
-        tag_name="${{ env.KERN_COMPILED }}-${GITHUB_RUN_NUMBER}"
+        tag_name="${{ env.KERN_COMPILED }}-1"
         hub release create "${assets[@]}" -m "$tag_name" "$tag_name"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
