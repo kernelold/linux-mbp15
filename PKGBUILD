@@ -6,7 +6,7 @@
 #pkgver=6.0.2
 pkgbase=linux-mbp15
 # get latest stable kernel version to build
-mainversion=6.1
+mainversion=6.2
 kernstable=$(curl -s https://www.kernel.org/ | grep -A1 'stable:' | grep  "$mainversion" | grep -oP '(?<=strong>).*(?=</strong.*)')
 pkgver=$kernstable
 _srcname=linux-${pkgver}
@@ -219,7 +219,7 @@ sha256sums=(
 '89538d96a3ce3630069b625a1ad43a1dc93c3457c783041cdfdc3417c12e96cb' #	4003-HID-apple-Add-support-for-MacBookPro15-2-keyboard-tr.patch
 '90a6012cdd8a64ede8e0bbaf7331960bd68f628e0973b65459188eb1ccb5b829' #	7001-drm-i915-fbdev-Discard-BIOS-framebuffers-exceeding-h.patch
 'fc899329773452ac7d17c8c6efa4ade8b522dfdfb0316e203bf2e21bfd49420a' #	8014-ACPI-property-Support-strings-in-Apple-_DSM-props.patch
-'04001dfadc6a59fa25b5589da442978617b22d96d1778916c822b45948d3579b' #    8015-brcmfmac-acpi-Add-support-for-fetching-Apple-ACPI-pr.patch	
+'f7e24890ff03d4a720df2f34ce3c646930f411eb51909e3bb75c968623c34c60' #    8015-brcmfmac-acpi-Add-support-for-fetching-Apple-ACPI-pr.patch
 '6f5f8dcde1f114eec35cf05e89ce75cf6a5c07fb061de5c3f7db1f8b50381ce3' #    8016-brcmfmac-pcie-Provide-a-buffer-of-random-bytes-to-th.patch
 '4a44a76b434a6bb5accb891db7632911fc0aa31ebe7250095e885f13db9c1273' #    8019-brcmfmac-pcie-Perform-correct-BCM4364-firmware-selec.patch
 )

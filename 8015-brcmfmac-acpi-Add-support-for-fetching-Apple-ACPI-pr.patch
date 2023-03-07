@@ -26,12 +26,16 @@ diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/Makefile b/drivers
 index 13c13504a..19009eb9d 100644
 --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/Makefile
 +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/Makefile
-@@ -47,3 +47,5 @@ brcmfmac-$(CONFIG_OF) += \
+@@ -48,6 +48,8 @@ brcmfmac-$(CONFIG_OF) += \
  		of.o
  brcmfmac-$(CONFIG_DMI) += \
  		dmi.o
 +brcmfmac-$(CONFIG_ACPI) += \
 +		acpi.o
+
+ ifeq ($(CONFIG_BRCMFMAC),m)
+ obj-m += wcc/
+
 diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/acpi.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/acpi.c
 new file mode 100644
 index 000000000..b70cd6970
@@ -124,4 +128,3 @@ index d4aa25d64..a88c4a931 100644
  u8 brcmf_map_prio_to_aci(void *cfg, u8 prio);
 -- 
 2.25.1
-
