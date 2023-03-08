@@ -39,6 +39,9 @@ source=(
   3004-applesmc-key-interface-wrappers.patch
   3005-applesmc-basic-mmio-interface-implementation.patch
   3006-applesmc-fan-support-on-T2-Macs.patch
+  3007-applesmc-Add-iMacPro-to-applesmc_whitelist.patch
+  3008-applesmc-make-applesmc_remove-void.patch
+  3009-applesmc-battery-charge-limiter.patch
 
   # T2 USB Keyboard/Touchpad support
   4003-HID-apple-Add-support-for-MacBookPro15-2-keyboard-tr.patch
@@ -210,12 +213,15 @@ sha256sums=(
 "$kernsha"                                                         #    Linix kernel
 'SKIP'	                                                           #    Linux kernel sig
 '644c8f2fdaa25d1536fec9f1b40d4d69f850c9dd45466df2539e53fc118df4e7' #    config
-'cfd23a06797ac86575044428a393dd7f10f06eff7648d0b78aedad82cbe41279' #	3001-applesmc-convert-static-structures-to-drvdata.patch
+'5cbab182eb9b02b5b4a922c86dcc4fcd5b3a9d10ffa3de742a4a1143bf2697fc' #    3001-applesmc-convert-static-structures-to-drvdata.patch
 '8d8401a99a9dfbc41aa2dc5b6a409a19860b1b918465e19de4a4ff18de075ea3' #	3002-applesmc-make-io-port-base-addr-dynamic.patch
 '08d165106fe35b68a7b48f216566951a5db0baac19098c015bcc81c5fcba678d' #	3003-applesmc-switch-to-acpi_device-from-platform.patch
 '62f6d63815d4843ca893ca76b84a9d32590a50358ca0962017ccd75a40884ba8' #	3004-applesmc-key-interface-wrappers.patch
 '2827dab6eeb2d2a08034938024f902846b5813e967a0ea253dc1ea88315da383' #	3005-applesmc-basic-mmio-interface-implementation.patch
 '398dec7d54c6122ae2263cd5a6d52353800a1a60fd85e52427c372ea9974a625' #	3006-applesmc-fan-support-on-T2-Macs.patch
+'e1b0db1924e953efa7d20b8efcdc6e6bccee3199ddd83d47dc9f35720aad5974' #    3007-applesmc-Add-iMacPro-to-applesmc_whitelist.patch
+'7c35ba15e034028611d1b8a4f121e42476739529114cfc28a271834e9bc68764' #    3008-applesmc-make-applesmc_remove-void.patch
+'a6ef2074a1fef11b82851eba2ab2e1cd7e67a6f140fa5b462e5c8dda38798bf1' #    3009-applesmc-battery-charge-limiter.patch
 '89538d96a3ce3630069b625a1ad43a1dc93c3457c783041cdfdc3417c12e96cb' #	4003-HID-apple-Add-support-for-MacBookPro15-2-keyboard-tr.patch
 '90a6012cdd8a64ede8e0bbaf7331960bd68f628e0973b65459188eb1ccb5b829' #	7001-drm-i915-fbdev-Discard-BIOS-framebuffers-exceeding-h.patch
 'fc899329773452ac7d17c8c6efa4ade8b522dfdfb0316e203bf2e21bfd49420a' #	8014-ACPI-property-Support-strings-in-Apple-_DSM-props.patch
