@@ -53,7 +53,6 @@ source=(
   8014-ACPI-property-Support-strings-in-Apple-_DSM-props.patch
   8015-brcmfmac-acpi-Add-support-for-fetching-Apple-ACPI-pr.patch
   8016-brcmfmac-pcie-Provide-a-buffer-of-random-bytes-to-th.patch
-  8019-brcmfmac-pcie-Perform-correct-BCM4364-firmware-selec.patch
 )
 
 validpgpkeys=(
@@ -227,5 +226,4 @@ sha256sums=(
 'fc899329773452ac7d17c8c6efa4ade8b522dfdfb0316e203bf2e21bfd49420a' #	8014-ACPI-property-Support-strings-in-Apple-_DSM-props.patch
 'f7e24890ff03d4a720df2f34ce3c646930f411eb51909e3bb75c968623c34c60' #    8015-brcmfmac-acpi-Add-support-for-fetching-Apple-ACPI-pr.patch
 '6f5f8dcde1f114eec35cf05e89ce75cf6a5c07fb061de5c3f7db1f8b50381ce3' #    8016-brcmfmac-pcie-Provide-a-buffer-of-random-bytes-to-th.patch
-'4a44a76b434a6bb5accb891db7632911fc0aa31ebe7250095e885f13db9c1273' #    8019-brcmfmac-pcie-Perform-correct-BCM4364-firmware-selec.patch
 )
