@@ -6,7 +6,7 @@
 #pkgver=6.0.2
 pkgbase=linux-mbp15
 # get latest stable kernel version to build
-mainversion=6.2
+mainversion=6.3
 kernstable=$(curl -s https://www.kernel.org/ | grep -A1 'stable:' | grep  "$mainversion" | grep -oP '(?<=strong>).*(?=</strong.*)')
 pkgver=$kernstable
 _srcname=linux-${pkgver}
@@ -65,12 +65,8 @@ export KBUILD_BUILD_USER=$pkgbase
 export KBUILD_BUILD_TIMESTAMP="$(date -Ru${SOURCE_DATE_EPOCH:+d @$SOURCE_DATE_EPOCH})"
 
 prepare() {
+  export KERNELVERSION=$kernstable
   cd $_srcname
-
-  echo "Setting version..."
-  scripts/setlocalversion --save-scmversion
-  echo "-$pkgrel" > localversion.10-pkgrel
-  echo "${pkgbase#linux}" > localversion.20-pkgname
 
   local src
   for src in "${source[@]}"; do
@@ -84,6 +80,12 @@ prepare() {
   echo "Setting config..."
   cp ../config .config
   make olddefconfig
+  make prepare
+
+  echo "Setting version..."
+  scripts/setlocalversion 
+  echo "-$pkgrel" > localversion.10-pkgrel
+  echo "${pkgbase#linux}" > localversion.20-pkgname
 
   make -s kernelrelease > version
   echo "Prepared $pkgbase version $(<version)"
