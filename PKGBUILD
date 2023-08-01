@@ -6,7 +6,7 @@
 #pkgver=6.0.2
 pkgbase=linux-mbp15
 # get latest stable kernel version to build
-mainversion=6.3
+mainversion=6.4
 kernstable=$(curl -s https://www.kernel.org/ | grep -A1 'stable:' | grep  "$mainversion" | grep -oP '(?<=strong>).*(?=</strong.*)')
 pkgver=$kernstable
 _srcname=linux-${pkgver}
@@ -50,8 +50,8 @@ source=(
   7001-drm-i915-fbdev-Discard-BIOS-framebuffers-exceeding-h.patch
 
   # Broadcom WIFI/BT device support
-  8014-ACPI-property-Support-strings-in-Apple-_DSM-props.patch
-  8015-brcmfmac-acpi-Add-support-for-fetching-Apple-ACPI-pr.patch
+#  8014-ACPI-property-Support-strings-in-Apple-_DSM-props.patch
+#  8015-brcmfmac-acpi-Add-support-for-fetching-Apple-ACPI-pr.patch
 )
 
 validpgpkeys=(
@@ -224,6 +224,6 @@ sha256sums=(
 'a6ef2074a1fef11b82851eba2ab2e1cd7e67a6f140fa5b462e5c8dda38798bf1' #    3009-applesmc-battery-charge-limiter.patch
 '89538d96a3ce3630069b625a1ad43a1dc93c3457c783041cdfdc3417c12e96cb' #	4003-HID-apple-Add-support-for-MacBookPro15-2-keyboard-tr.patch
 '90a6012cdd8a64ede8e0bbaf7331960bd68f628e0973b65459188eb1ccb5b829' #	7001-drm-i915-fbdev-Discard-BIOS-framebuffers-exceeding-h.patch
-'fc899329773452ac7d17c8c6efa4ade8b522dfdfb0316e203bf2e21bfd49420a' #	8014-ACPI-property-Support-strings-in-Apple-_DSM-props.patch
-'f7e24890ff03d4a720df2f34ce3c646930f411eb51909e3bb75c968623c34c60' #    8015-brcmfmac-acpi-Add-support-for-fetching-Apple-ACPI-pr.patch
+#'fc899329773452ac7d17c8c6efa4ade8b522dfdfb0316e203bf2e21bfd49420a' #	8014-ACPI-property-Support-strings-in-Apple-_DSM-props.patch
+#'f7e24890ff03d4a720df2f34ce3c646930f411eb51909e3bb75c968623c34c60' #    8015-brcmfmac-acpi-Add-support-for-fetching-Apple-ACPI-pr.patch
 )
