@@ -66,6 +66,7 @@ jobs:
       id: upload-release-asset 
       run: |
         assets=()
+        eval "$(hub alias -s)"
         for asset in /home/runner/work/linux-mbp15/linux-mbp15/*.pkg.tar.zst  ; do
           assets+=("-a" "$asset")
         done
