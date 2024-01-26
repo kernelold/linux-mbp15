@@ -6,7 +6,7 @@
 #pkgver=6.0.2
 pkgbase=linux-mbp15
 # get latest stable kernel version to build
-mainversion=6.6
+mainversion=6.7
 kernstable=$(curl -s https://www.kernel.org/ | grep -A1 'stable:' | grep  "$mainversion" | grep -oP '(?<=strong>).*(?=</strong.*)')
 pkgver=$kernstable
 _srcname=linux-${pkgver}
@@ -93,6 +93,7 @@ prepare() {
 build() {
   cd $_srcname
   make all
+  echo ok
 }
 
 _package() {
@@ -120,7 +121,8 @@ _package() {
   make INSTALL_MOD_PATH="$pkgdir/usr" INSTALL_MOD_STRIP=1 modules_install
 
   # remove build and source links
-  rm "$modulesdir"/{source,build}
+  echo "removing ${modulesdir}/build"
+  rm   "${modulesdir}/build"
 }
 
 _package-headers() {
