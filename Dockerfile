@@ -1,8 +1,9 @@
 FROM archlinux:latest
 
-RUN pacman -Syu --noconfirm --needed base-devel gnupg bc kmod libelf pahole cpio perl tar xz xmlto python-sphinx python-sphinx_rtd_theme graphviz imagemagick git ; \
+RUN pacman-key --init ;\
+pacman -Syu --noconfirm --needed base-devel gnupg bc kmod libelf pahole cpio perl tar xz xmlto python-sphinx python-sphinx_rtd_theme graphviz imagemagick git archlinux-keyring keyutils ; \
 useradd builder -m -u 1001; \
-su builder -c 'gpg --recv-key 38DBBDC86092693E' ; \
+su builder -c 'gpg --keyserver pgp.mit.edu --recv-keys 38DBBDC86092693E' ;\
 mkdir /build ; \
 chown -R builder: /build
 
