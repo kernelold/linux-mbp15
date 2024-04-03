@@ -6,7 +6,7 @@
 #pkgver=6.0.2
 pkgbase=linux-mbp15
 # get latest stable kernel version to build
-mainversion=6.7
+mainversion=6.8
 kernstable=$(curl -s https://www.kernel.org/ | grep -A1 'stable:' | grep  "$mainversion" | grep -oP '(?<=strong>).*(?=</strong.*)')
 pkgver=$kernstable
 _srcname=linux-${pkgver}
