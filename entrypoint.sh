@@ -11,4 +11,5 @@ fi
 jobs=$((rjobs + 3 ))
 #echo "Make with $jobs jobs"
 export MAKEFLAGS="$MAKEFLAGS -j${jobs}"
+su $USER -c 'gpg --recv-keys 38DBBDC86092693E'
 su $USER -c ' '"$*"' ' 

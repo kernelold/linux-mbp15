@@ -42,6 +42,7 @@ jobs:
       run: |
         sed "s/pkgrel=1/pkgrel=${GITHUB_RUN_NUMBER}/" -i PKGBUILD
         docker build . -t builder:latest
+        docker run -v /home/runner/work/linux-mbp15/linux-mbp15:/build:Z builder:latest id
         docker run -v /home/runner/work/linux-mbp15/linux-mbp15:/build:Z builder:latest makepkg -s --needed
     - name: list packages
       if: steps.tagged.outputs.is == 'false'
